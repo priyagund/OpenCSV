@@ -6,6 +6,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
+import java.util.List;
 
 public class OpenCSVReadAndParseToBean
 {
@@ -22,7 +23,7 @@ public class OpenCSVReadAndParseToBean
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();
 
-            Iterator<CSVUser> csvUserIterator = csvToBean.iterator();
+           /* Iterator<CSVUser> csvUserIterator = csvToBean.iterator();
 
             while (csvUserIterator.hasNext()) {
                 CSVUser csvUser = csvUserIterator.next();
@@ -31,7 +32,17 @@ public class OpenCSVReadAndParseToBean
                 System.out.println("PhoneNo : " + csvUser.getPhoneNo());
                 System.out.println("Country : " + csvUser.getCountry());
                 System.out.println("==========================");
+            }*/
+            List<CSVUser> csvUsers = csvToBean.parse();
+
+            for(CSVUser csvUser: csvUsers) {
+                System.out.println("Name : " + csvUser.getName());
+                System.out.println("Email : " + csvUser.getEmail());
+                System.out.println("PhoneNo : " + csvUser.getPhoneNo());
+                System.out.println("Country : " + csvUser.getCountry());
+                System.out.println("==========================");
             }
+
         }
     }
 
